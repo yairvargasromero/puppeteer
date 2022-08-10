@@ -75,7 +75,9 @@ export async function importDebug(): Promise<typeof import('debug')> {
 export const debug = (prefix: string): ((...args: unknown[]) => void) => {
   if (isNode) {
     return async (...logArgs: unknown[]) => {
-      (await importDebug())(prefix)(logArgs);
+      if (process.env['DEBUG']) {
+        console.log(logArgs);
+      }
     };
   }
 

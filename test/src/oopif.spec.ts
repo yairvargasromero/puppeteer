@@ -113,10 +113,14 @@ describeChromeOnly('OOPIF', function () {
       server.CROSS_PROCESS_PREFIX + '/empty.html'
     );
     expect(frame.isOOPFrame()).toBe(true);
+    console.log('NAV');
+    process.env['DEBUG'] = 'puppeteer.*';
     await navigateFrame(page, 'frame1', server.EMPTY_PAGE);
     // The load iframe event awaited for in navigateFrame is not enough to
     // ensure the internal Puppeteer state is finished syncing. Therefore, we
     // await some time for the state to change.
+    console.log('AFTER NAV');
+    delete process.env['DEBUG'];
     while (true) {
       if (!frame.isOOPFrame()) {
         break;
