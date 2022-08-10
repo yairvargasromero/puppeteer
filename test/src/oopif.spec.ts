@@ -113,7 +113,7 @@ describeChromeOnly('OOPIF', function () {
       server.CROSS_PROCESS_PREFIX + '/empty.html'
     );
     expect(frame.isOOPFrame()).toBe(true);
-    console.log('NAV');
+    console.log('NAV STARTED!');
     process.env['DEBUG'] = 'puppeteer.*';
     await navigateFrame(page, 'frame1', server.EMPTY_PAGE);
     // The load iframe event awaited for in navigateFrame is not enough to
